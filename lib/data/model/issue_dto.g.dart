@@ -1,0 +1,18 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'issue_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+IssueDto _$IssueDtoFromJson(Map<String, dynamic> json) => IssueDto(
+      id: (json['id'] as num).toInt(),
+      number: (json['number'] as num).toInt(),
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      body: json['body'] as String?,
+      title: json['title'] as String,
+      state: json['state'] as String,
+      url: json['html_url'] as String,
+      pullRequest: json['pull_request'],
+    );

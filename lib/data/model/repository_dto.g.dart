@@ -1,0 +1,20 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'repository_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+RepositoryDto _$RepositoryDtoFromJson(Map<String, dynamic> json) =>
+    RepositoryDto(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      openIssues: (json['open_issues_count'] as num).toInt(),
+      language: json['language'] as String?,
+      forks: (json['forks_count'] as num).toInt(),
+      watchers: (json['watchers_count'] as num).toInt(),
+      isPrivate: json['private'] as bool,
+      fullName: json['full_name'] as String,
+    );

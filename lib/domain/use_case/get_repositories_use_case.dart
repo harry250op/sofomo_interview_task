@@ -6,10 +6,6 @@ class GetRepositoriesUseCase {
 
   GetRepositoriesUseCase(this.repositoryRepository);
 
-  Future<List<RepositoryModel>> call({String? searchText}) async {
-    final response = await repositoryRepository.getGitHubRepository(searchText);
-    return response
-        .map((repository) => RepositoryModel.fromDto(repository))
-        .toList();
-  }
+  Future<List<RepositoryModel>> call({String? searchText}) async =>
+      await repositoryRepository.getGitHubRepository(searchText);
 }

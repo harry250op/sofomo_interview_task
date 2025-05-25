@@ -1,0 +1,9 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
+      id: (json['id'] as num).toInt(),
+      login: json['login'] as String,
+      avatarUrl: json['avatar_url'] as String,
+    );

@@ -53,91 +53,103 @@ class _Body extends StatelessWidget {
                     height: 20,
                   ),
                   RepositoryWidget(repository: state.repository),
-                  Expanded(
-                    child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        itemBuilder: (context, index) {
-                          final issue = state.issues[index];
+                  if (state.issues.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 40.0),
+                      child: const Center(
+                        child: Text(
+                          'No issues found',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ),
+                    )
+                  else
+                    Expanded(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          itemBuilder: (context, index) {
+                            final issue = state.issues[index];
 
-                          return GestureDetector(
-                            onTap: () => _launchUrl(issue.url),
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  spacing: 20,
-                                  children: [
-                                    Row(
-                                      spacing: 30,
-                                      children: [
-                                        ClipOval(
-                                          child: Image.network(
-                                            issue.userImageUrl,
-                                            height: 50,
-                                            width: 50,
+                            return GestureDetector(
+                              onTap: () => _launchUrl(issue.url),
+                              child: Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    spacing: 20,
+                                    children: [
+                                      Row(
+                                        spacing: 30,
+                                        children: [
+                                          ClipOval(
+                                            child: Image.network(
+                                              issue.userImageUrl,
+                                              height: 50,
+                                              width: 50,
+                                            ),
                                           ),
-                                        ),
-                                        Flexible(
-                                          child: Text(
-                                            issue.title,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 10),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: issue.isOpen
-                                                ? Colors.green
-                                                : Colors.purple,
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              issue.isPullRequest
-                                                  ? Icon(
-                                                      Icons.call_split,
-                                                      color: Colors.white,
-                                                    )
-                                                  : Icon(Icons.bug_report,
+                                          Flexible(
+                                            child: Text(
+                                              issue.title,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: issue.isOpen
+                                                  ? Colors.green
+                                                  : Colors.purple,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                issue.isPullRequest
+                                                    ? Icon(
+                                                        Icons.call_split,
+                                                        color: Colors.white,
+                                                      )
+                                                    : Icon(Icons.bug_report,
+                                                        color: Colors.white),
+                                                Text(
+                                                  issue.isOpen
+                                                      ? 'Open'
+                                                      : 'Closed',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.white),
-                                              Text(
-                                                issue.isOpen
-                                                    ? 'Open'
-                                                    : 'Closed',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white),
-                                              ),
-                                            ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                      ],
-                                    ),
-                                    Text(
-                                      issue.body,
-                                      maxLines: 10,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
+                                          const SizedBox(width: 10),
+                                        ],
+                                      ),
+                                      Text(
+                                        issue.body,
+                                        maxLines: 10,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: state.issues.length),
-                  ),
+                            );
+                          },
+                          itemCount: state.issues.length),
+                    ),
                 ],
               ),
             RepositoryDetailsState() => Container(),

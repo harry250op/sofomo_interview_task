@@ -18,6 +18,7 @@ class RepositoryDetailsCubit extends Cubit<RepositoryDetailsState> {
       emit(RepositoryDetailsState.loading());
       final issues =
           await _getDetailsRepositoryUseCase.call(repository.fullName);
+
       emit(RepositoryDetailsState.data(repository: repository, issues: issues));
     } catch (e) {
       emit(RepositoryDetailsState.error(

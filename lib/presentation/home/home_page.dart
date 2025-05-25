@@ -61,6 +61,12 @@ class _Body extends StatelessWidget {
                       ),
                     Loading() =>
                       const Center(child: CircularProgressIndicator()),
+                    Empty() => const Center(
+                          child: Text(
+                        'No repositories found',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )),
                     Data() => ListView.builder(
                         itemCount: state.repositories.length,
                         itemBuilder: (context, index) {

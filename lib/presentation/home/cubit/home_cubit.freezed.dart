@@ -146,6 +146,26 @@ class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
 
 /// @nodoc
 
+class Empty implements HomeState {
+  const Empty();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'HomeState.empty()';
+  }
+}
+
+/// @nodoc
+
 class Error implements HomeState {
   const Error({required this.message});
 

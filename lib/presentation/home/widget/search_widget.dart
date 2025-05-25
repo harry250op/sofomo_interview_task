@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sofomo_github/core/utils/debounce.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
@@ -21,7 +22,7 @@ class SearchWidget extends StatelessWidget {
         ),
       ),
       child: TextField(
-        onChanged: onSearch,
+        onChanged: (searchText) => DeBouncer.run(() => onSearch(searchText)),
         decoration: InputDecoration(
           hintText: 'Search',
           border: InputBorder.none,

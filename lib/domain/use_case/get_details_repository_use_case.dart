@@ -6,8 +6,6 @@ class GetDetailsRepositoryUseCase {
 
   GetDetailsRepositoryUseCase(this.githubRepository);
 
-  Future<List<IssueModel>> call(String fullName) async {
-    final response = await githubRepository.getIssue(fullName);
-    return response.map((e) => IssueModel.fromDto(e)).toList();
-  }
+  Future<List<IssueModel>> call(String fullName) async =>
+      await githubRepository.getIssue(fullName);
 }

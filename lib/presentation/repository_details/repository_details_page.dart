@@ -162,6 +162,9 @@ class _Body extends StatelessWidget {
   Future<void> _launchUrl(String url) async {
     final Uri link = Uri.parse(url);
 
-    if (await canLaunchUrl(link)) {}
+    launchUrl(
+      link,
+      mode: LaunchMode.externalApplication,
+    );
   }
 }
